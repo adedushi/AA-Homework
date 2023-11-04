@@ -21,10 +21,24 @@ e.neighbors = [a]
 f.neighbors = [e]
 
 
-print a.neighbors
-print c.neighbors
-print e.neighbors
-print f.neighbors
+# print a.neighbors
+# print c.neighbors
+# print e.neighbors
+# print f.neighbors
 
 def bfs(starting_node, target_value)
+    queue = []
+    queue << starting_node
+
+    while queue.length > 0
+        queue.each do |node|
+            return node.value if queue.first.value == target_value
+            queue.shift
+            queue += node.neighbors
+        end
+    end
+
+    return nil
 end
+
+puts bfs(a, "b")
