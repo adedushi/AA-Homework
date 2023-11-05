@@ -1,3 +1,4 @@
+require 'set'
 class GraphNode
     attr_reader :neighbors, :value
     attr_writer :neighbors
@@ -29,11 +30,14 @@ f.neighbors = [e]
 def bfs(starting_node, target_value)
     queue = []
     queue << starting_node
+    visited = Set.new()
+
 
     while queue.length > 0
-        queue.each do |node|
-            return node.value if queue.first.value == target_value
-            queue.shift
+        node = queue.shift
+        while !visited.include?(node)
+            return node.value if node.value == target_value
+            visited.add(node)
             queue += node.neighbors
         end
     end
@@ -42,3 +46,4 @@ def bfs(starting_node, target_value)
 end
 
 puts bfs(a, "b")
+puts bfs(a, "f")
