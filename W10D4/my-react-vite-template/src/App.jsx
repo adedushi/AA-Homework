@@ -2,7 +2,7 @@ function App(props) {
 
   return (
     <div className="app">
-    <h1>Hello from App</h1>
+    <h1>Hello {props.name}! I'm App</h1>
     </div>
   )
 }
