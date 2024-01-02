@@ -1,8 +1,9 @@
 import { useContext } from "react";
 import { CoffeeContext } from "../context/CoffeeContext";
+import { useCoffee } from "../context/CoffeeContext";
 
 const SelectedCoffeeBean = () => {
-  const { coffeeBean } = useContext(CoffeeContext);
+  const { coffeeBean } = useCoffee();
 
   return (
     <div className="selected-coffee">
