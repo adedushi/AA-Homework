@@ -1,9 +1,7 @@
-import articles from '../data/data.json';
-
 const LOAD_ARTICLES = 'article/loadArticles';
 const ADD_ARTICLE = 'article/addArticle';
 
-export const loadArticles = () => {
+export const loadArticles = (articles) => {
   return {
     type: LOAD_ARTICLES,
     articles
@@ -29,5 +27,26 @@ const articleReducer = (state = initialState, action) => {
       return state;
   }
 };
+
+export const fetchArticles = () => async dispatch => {
+  const response = await fetch('/api/articles');
+  const articles = await response.json();
+
+  dispatch(loadArticles(articles))
+}
+
+export const writeArticle = (article) => async dispatch => {
+  const response = await fetch('/api/articles', 
+    {method: 'POST',
+    body: JSON.stringify(article),
+    headers: {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+    }}
+  )
+  const newArticle = await response.json();
+  
+  dispatch(addArticle(newArticle))
+}
 
 export default articleReducer;
